@@ -1,0 +1,40 @@
+FROM ghcr.io/astral-sh/uv:0.11.17 AS uv
+FROM docker:cli AS docker-cli
+FROM node:22-bookworm-slim@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392 AS native-ui
+WORKDIR /build
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY tsconfig.json ./
+COPY frontend ./frontend
+COPY native/web ./native/web
+RUN npm run build:native
+
+FROM python:3.13-slim@sha256:70729b46c69b4f1e97c4822c1af3df53a1476cf5ddc6c087c0c10bc3a5678c2f AS python-base
+COPY --from=uv /uv /usr/local/bin/uv
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+
+# Every locked dependency ships a Linux wheel, so this stage needs no compiler.
+FROM python-base AS dependencies
+COPY pyproject.toml uv.lock ./
+COPY native/pyproject.toml ./native/
+RUN uv sync --frozen --no-dev --no-install-workspace
+
+FROM python-base
+COPY pyproject.toml uv.lock ./
+COPY native/pyproject.toml ./native/
+COPY --from=dependencies /app/.venv /app/.venv
+COPY native/src ./native/src
+COPY --from=native-ui /build/native/src/modelmesh/static ./native/src/modelmesh/static
+COPY native/skills ./native/skills
+COPY native/instructions.md native/hatch_build.py ./native/
+RUN uv sync --frozen --no-dev --no-editable
+COPY docker_start.py docker_healthcheck.py ./
+# The agent's computer runs as a sibling container, started through the host's Docker socket.
+# Kept in the final stage so it does not invalidate the dependency build cache.
+COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
+RUN useradd --uid 10001 --create-home workspace && mkdir /data && chown workspace:workspace /data
+ENV DATA_DIR=/data PYTHONUNBUFFERED=1 PATH="/app/.venv/bin:${PATH}"
+EXPOSE 8787
+HEALTHCHECK --interval=30s --timeout=5s CMD /app/.venv/bin/python /app/docker_healthcheck.py
+ENTRYPOINT ["/app/.venv/bin/python", "/app/docker_start.py"]

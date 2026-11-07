@@ -1,0 +1,82 @@
+model_list:
+  - model_name: beam-1.0
+    litellm_params:
+      model: openai/beam-1.0
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: deepseek-v4-flash
+    litellm_params:
+      model: openai/deepseek-v4-flash
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: deepseek-v4.1-flash
+    litellm_params:
+      model: openai/deepseek-v4.1-flash
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: gemma-4-31b-it
+    litellm_params:
+      model: openai/gemma-4-31b-it
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: glm-5.3
+    litellm_params:
+      model: openai/glm-5.3
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: muse-glimmer-30b
+    litellm_params:
+      model: openai/muse-glimmer-30b
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: nemotron-3-super-120b-a12b
+    litellm_params:
+      model: openai/nemotron-3-super-120b-a12b
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: ornith-1.0-35b
+    litellm_params:
+      model: openai/ornith-1.0-35b
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: qwen3-coder-next
+    litellm_params:
+      model: openai/qwen3-coder-next
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: qwen3.6-35b-a3b
+    litellm_params:
+      model: openai/qwen3.6-35b-a3b
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: qwen3.8-27b
+    litellm_params:
+      model: openai/qwen3.8-27b
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+  - model_name: qwen3.8-flash
+    litellm_params:
+      model: openai/qwen3.8-flash
+      api_base: https://lumen.ncsa.illinois.edu/v1
+      api_key: os.environ/LUMEN_API_KEY
+      use_chat_completions_api: true
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+litellm_settings:
+  drop_params: true
+router_settings:
+  # Lumen models fail transiently now and then (429, 5xx, timeouts): retry on the same model.
+  # No cross-model fallbacks: the turn, its usage and its "via" tag must name the model that answered.
+  num_retries: 2
+  retry_after: 2

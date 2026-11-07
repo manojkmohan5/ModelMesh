@@ -1,0 +1,116 @@
+/** The server injects a canonical base; assets and requests share it at runtime. */
+export function basePath(): string {
+  return typeof document === "undefined" ? "" : (document.querySelector("base")?.getAttribute("href") ?? "/").replace(/\/$/, "")
+}
+export function appPath(path: string): string {
+  const base = basePath()
+  return path.startsWith("/") && !path.startsWith("//") && !(base && (path === base || path.startsWith(base + "/"))) ? base + path : path
+}
+export function internalPath(path: string): string {
+  const base = basePath()
+  return base && path.startsWith(base + "/") ? path.slice(base.length) : path
+}
+
+let csrf = ""
+export const setCsrf = (value: string) => { csrf = value }
+export const csrfToken = () => csrf
+
+export class ApiError extends Error {
+  /** `field` is the API field a validation error is about, when the server names one. */
+  constructor(message: string, public status: number, public field?: string) { super(message); this.name = "Error" }
+}
+
+function detailMessage(value: unknown): { message: string; field?: string } | undefined {
+  if (!value || typeof value !== "object" || !("detail" in value)) return
+  const detail = value.detail
+  if (typeof detail === "string" && detail.trim()) return { message: detail }
+  if (Array.isArray(detail) && typeof detail[0]?.msg === "string") {
+    const field = fieldName(detail[0].loc)
+    return { message: field ? `${readable(field)}: ${detail[0].msg}` : detail[0].msg, field }
+  }
+}
+
+/** FastAPI's `loc` is [where, ...path]. The last string in the path is the field. */
+function fieldName(loc: unknown): string | undefined {
+  return Array.isArray(loc) ? loc.slice(1).filter((part): part is string => typeof part === "string").at(-1) : undefined
+}
+
+/** "display_name" becomes "Display name". */
+function readable(field: string): string {
+  const words = field.replace(/[_-]+/g, " ").trim()
+  return words ? words[0].toUpperCase() + words.slice(1) : field
+}
+
+function responseFailure(status: number): string {
+  if (status === 401) return "Your session has expired. Please sign in again."
+  if (status === 403) return "You no longer have access to this request."
+  if (status >= 500) return `ModelMesh is temporarily unavailable (HTTP ${status}). Please try again.`
+  return `The request could not be completed (HTTP ${status}). Please try again.`
+}
+
+/**
+ * The single transport for /api: CSRF headers, one attempt, and ApiError on any
+ * failure. Shared by the generated client (api-client.ts) and legacy api<T>().
+ * One attempt only: callers must not silently replay a possibly accepted write.
+ */
+export async function send(input: string | Request, init: RequestInit = {}): Promise<Response> {
+  const requestCsrf = csrf
+  const signal = typeof input === "string" ? init.signal : input.signal
+  const headers = typeof input === "string" ? new Headers(init.headers) : input.headers
+  headers.set("X-ModelMesh-CSRF", requestCsrf)
+  headers.set("X-CSRF-Token", requestCsrf)
+  let response: Response
+  try {
+    response = await (typeof input === "string" ? fetch(input, { ...init, headers }) : fetch(input))
+  } catch (error) {
+    if (signal?.aborted || (error instanceof Error && error.name === "AbortError")) throw error
+    throw new ApiError("Could not reach ModelMesh. Check your connection and try again.", 0)
+  }
+  if (response.ok) return response
+  let value: unknown
+  try {
+    value = await response.json()
+  } catch (error) {
+    if (signal?.aborted || (error instanceof Error && error.name === "AbortError")) throw error
+    // Error pages and empty error bodies must retain their HTTP status. Never
+    // show their raw text/HTML (which may contain proxy or backend details).
+  }
+  if (response.status === 401 && csrf === requestCsrf) window.dispatchEvent(new Event("modelmesh:signed-out"))
+  const detail = detailMessage(value)
+  throw new ApiError(detail?.message ?? responseFailure(response.status), response.status, detail?.field)
+}
+
+export async function readJson(response: Response, signal?: AbortSignal | null): Promise<unknown> {
+  try {
+    return await response.json()
+  } catch (error) {
+    if (signal?.aborted || (error instanceof Error && error.name === "AbortError")) throw error
+    throw new ApiError("ModelMesh returned an unreadable response. Please try again.", response.status)
+  }
+}
+
+/** Validate JSON before the SDK can treat an empty body or proxy page as data. */
+export async function sendJson(input: string | Request, init: RequestInit = {}): Promise<Response> {
+  const response = await send(input, init)
+  const method = typeof input === "string" ? init.method : input.method
+  // The generated SDK also exposes SSE. Never consume a live stream as JSON.
+  const streaming = response.headers.get("Content-Type")?.split(";")[0].trim().toLowerCase() === "text/event-stream"
+  if (!streaming && response.status !== 204 && response.status !== 205 && method !== "HEAD") {
+    await readJson(response.clone(), typeof input === "string" ? init.signal : input.signal)
+  }
+  return response
+}
+
+/** Legacy: `T` is an unchecked cast. New code calls the generated SDK from ./generated/api. */
+export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const headers = new Headers(options.headers)
+  if (!headers.has("Content-Type")) headers.set("Content-Type", "application/json")
+  const response = await send(appPath(`/api${path}`), { ...options, headers })
+  if (response.status === 204 || response.status === 205 || options.method === "HEAD") return undefined as T
+  return await readJson(response, options.signal) as T
+}
+
+/** Legacy: see apiRequest. */
+export function api<T>(path: string, method = "GET", body?: unknown, signal?: AbortSignal): Promise<T> {
+  return apiRequest<T>(path, { method, signal, body: body === undefined ? undefined : JSON.stringify(body) })
+}

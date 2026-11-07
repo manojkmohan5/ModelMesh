@@ -1,0 +1,261 @@
+/* Keep a readable two-line rail while giving the session list more room. */
+.app > .sidebar {
+  gap: 2px;
+  padding: 8px 10px 8px;
+}
+
+.sidebar > .new-chat { border: 0; border-radius: 6px; background: transparent; font-size: 13px; font-weight: 400; }
+.sidebar > .new-chat:hover { background: var(--ui-secondary); }
+.sidebar .rail-section-label { margin: 12px 10px 0; color: var(--ui-foreground); font: 11px/1.6 var(--ui-font); letter-spacing: .04em; text-transform: uppercase; }
+.sidebar .rail-palette-trigger { justify-content: center; flex: none; border: 0; border-radius: 6px; width: 28px; height: 28px; min-height: 28px; padding: 0; color: var(--ui-foreground); }
+.sidebar .rail-button { font-family: var(--ui-font); font-weight: 400; font-size: 13px; border-radius: 6px; }
+.sidebar .session-title { font-size: 13px; }
+
+.sidebar > .new-chat,
+.sidebar > .rail-button {
+  height: 32px;
+  min-height: 32px;
+  gap: 9px;
+  padding: 0 10px;
+}
+
+.sidebar > .rail-caption {
+  flex: none;
+  min-height: 36px;
+  gap: 4px;
+  padding: 4px 2px 0 8px;
+  margin-bottom: 0;
+}
+.sidebar > .rail-caption > span { gap: 8px; }
+.sidebar .session-group { margin-bottom: 8px; }
+.sidebar .session-group-toggle { height: 28px; min-height: 28px; gap: 8px; padding: 4px 6px; padding-inline-start: 10px; }
+.sidebar .session-group-toggle .session-leading { width: var(--session-leading-width); justify-content: center; }
+.sidebar .session-group-heading > button:not(.session-group-toggle) {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+}
+.sidebar .folder-empty { padding: 2px 10px 6px 25px; font-size: 12px; line-height: 18px; }
+
+.sidebar > .account { gap: 4px; padding: 8px 4px 0; }
+.sidebar > .account > span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sidebar > .account > button { flex: none; width: 32px; height: 32px; min-height: 32px; padding: 0; }
+.sidebar :is(a, button, input):focus-visible { outline: 2px solid var(--ui-primary); outline-offset: -2px; }
+
+/* Extend only the scrolling list through the sidebar's 12px inline padding.
+   Classic gutters stay outside the rows; the row padding also clears overlay thumbs. */
+.sidebar .session-list {
+  --session-leading-width: 16px;
+  margin-inline: -10px;
+  padding: 0 6px 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-control-border) transparent;
+}
+
+.sidebar .session-list::-webkit-scrollbar { width: 8px; }
+.sidebar .session-list::-webkit-scrollbar-thumb {
+  background: var(--ui-control-border);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+
+.sidebar .session-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0 4px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 2px 4px;
+  margin-block: 2px;
+  border-radius: 6px;
+}
+
+.sidebar .session-row > a {
+  grid-column: 1;
+  grid-row: 1;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px;
+  min-height: 26px;
+  line-height: 20px;
+}
+
+.sidebar .session-branch { min-width: 0; }
+.sidebar .session-children {
+  margin-inline-start: 8px;
+  padding-inline-start: 24px;
+  border-inline-start: 1px solid var(--ui-border);
+}
+.sidebar .session-child { min-height: 44px; }
+/* Dots and expand controls share a slot so sibling titles stay aligned. */
+.sidebar .session-leading {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--session-leading-width);
+}
+.sidebar .session-bullet { color: var(--ui-control-border); }
+.sidebar .session-children-toggle {
+  position: absolute;
+  z-index: 1;
+  inset-inline-start: 8px;
+  top: 4px;
+  width: 20px;
+  height: 22px;
+  min-height: 22px;
+  padding: 0;
+}
+.sidebar .session-children-toggle .closed { transform: rotate(-90deg); }
+
+/* Stretch the native link over the timestamp and row padding, retaining
+   keyboard navigation, modifier clicks and the non-link deleted state. */
+.sidebar .session-row > a[href]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+.sidebar .session-row > a[href]:focus-visible {
+  outline: none; /* The stretched link below draws the full-row focus ring. */
+}
+
+.sidebar .session-row > a[href]:focus-visible::after {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: -2px;
+}
+
+/* Independent controls stay above the link without nesting them inside it. */
+.sidebar .session-row-actions {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar .session-row .session-indicator {
+  grid-column: 3;
+  grid-row: 1;
+  margin: 0 6px;
+  width: 7px;
+  height: 7px;
+}
+
+.sidebar .session-row .session-title { min-width: 0; }
+.sidebar .session-row[draggable="true"] > a { cursor: grab; }
+.sidebar .session-row.session-dragging { opacity: .55; }
+.sidebar .session-group.session-drop-target,
+.sidebar .session-list.session-drop-target {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: -2px;
+  border-radius: 8px;
+  background: var(--ui-secondary);
+}
+.sidebar .sidebar-drop-notice {
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ui-muted);
+}
+
+.sidebar .session-row-actions {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Keep the controls in the tab order; focusing one reveals its whole group. */
+.sidebar .session-row:is(:hover, :has(:focus-visible), :has([data-state="open"])) .session-row-actions {
+  width: auto;
+  overflow: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar .session-row-actions > button {
+  width: 26px;
+  height: 26px;
+  min-height: 26px;
+  padding: 0;
+  flex: none;
+}
+
+.sidebar .session-row .session-row-actions .session-menu-trigger { opacity: 1; }
+.sidebar .session-row-actions > button[aria-pressed="true"] { color: var(--ui-primary); }
+.sidebar .session-row:focus-within { background: var(--ui-secondary); color: var(--ui-foreground); }
+.sidebar .session-row button:focus-visible {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: -2px;
+}
+
+.sidebar .session-row-meta {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 0;
+  min-width: 0;
+  padding: 0 6px;
+  padding-inline-start: calc(6px + var(--session-leading-width) + 8px);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ui-muted);
+}
+
+.sidebar .session-meta-item { display: inline-flex; align-items: center; min-width: 0; gap: 8px; }
+.sidebar .session-meta-separator { color: var(--ui-muted); }
+.sidebar .session-meta-item + .session-meta-item .session-meta-separator { margin-inline-start: 8px; }
+.sidebar .session-meta-status { color: var(--ui-foreground); }
+.sidebar .session-meta-status.needs-input { color: var(--ui-warning); }
+.sidebar .session-meta-status.failed, .sidebar .session-indicator.failed { color: var(--ui-danger); }
+.sidebar .session-indicator.failed { background: var(--ui-danger); }
+.sidebar .session-indicator.quiet { visibility: hidden; }
+@media (hover: none), (pointer: coarse), (max-width: 600px) {
+  .sidebar .session-list { --session-leading-width: 44px; }
+  .sidebar .session-children-toggle { width: 44px; height: 44px; min-height: 44px; top: 2px; inset-inline-start: 10px; }
+  .sidebar .session-children { padding-inline-start: 52px; }
+  .sidebar > .new-chat,
+  .sidebar > .rail-button { height: 44px; min-height: 44px; }
+  .sidebar > .account > button,
+  .sidebar .rail-caption button,
+  .sidebar .session-group-heading > button:not(.session-group-toggle) { width: 44px; height: 44px; min-height: 44px; }
+  .sidebar .session-row > a { grid-column: 1 / 3; min-height: 44px; align-items: center; }
+  .sidebar .session-row .session-indicator { margin-top: 0; }
+  .sidebar .session-row-actions {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: end;
+  }
+  .sidebar .session-row-actions > button { width: 44px; height: 44px; min-height: 44px; }
+  .sidebar .session-group-toggle,
+  .sidebar .session-group-heading > button,
+  .sidebar .rail-caption button { min-height: 44px; height: 44px; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .sidebar .session-row-actions { width: auto; overflow: visible; opacity: 1; pointer-events: auto; }
+}
+
+.sidebar .rail-destinations { gap: 2px; margin-bottom: 6px; }
+.sidebar .rail-destinations .rail-button { min-height: 32px; height: 32px; padding-inline: 10px; gap: 9px; color: var(--ui-foreground); }
+.sidebar .rail-destinations .rail-button svg, .sidebar > .new-chat svg { width: 15px; height: 15px; }
+.sidebar .rail-destinations .rail-button:hover { color: var(--ui-foreground); }
+@media (max-width: 600px), (pointer: coarse) {
+  .sidebar .rail-destinations .rail-button { min-height: 44px; height: 44px; }
+  .sidebar .rail-palette-trigger { min-width: 44px; min-height: 44px; }
+}
+
+.app.sidebar-collapsed .sidebar .rail-palette-trigger { display: none; }

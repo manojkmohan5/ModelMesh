@@ -1,0 +1,78 @@
+# ModelMesh UI components
+
+The React application lives in `native/web`. It imports shared shadcn/Radix
+controls from `frontend/components/ui` and semantic tokens from
+`frontend/theme.css`: The workspace uses the ModelMesh violet-black and
+white-lavender themes, fine borders, violet actions and semantic status colors. The
+brand gradient (`--mm-*` tokens) is reserved for the logo, the Home and sign-in
+headline and the composer focus ring. Navigation, toolbars
+and composers use subtle frosted glass over a static neutral backdrop; code and
+reading surfaces remain calm. Glass is progressively enhanced, with solid fills
+when backdrop filtering is unavailable or reduced transparency is requested.
+Avoid applying blur to layout ancestors or stacking multiple blur layers. A compact appearance
+control in the account footer and Settings switches light/dark mode without replacing
+drafts or navigating. The choice persists locally and applies before the first paint;
+dark is the default. Message surfaces and composer focus borders stay neutral. General Sans supplies the interface
+through Fontshare's official stylesheet; the bundled Geist font is its offline
+fallback. Geist Mono is used for code. General Sans is not redistributed in this
+repository; see https://www.fontshare.com/licenses/itf-ffl. CSP allows only
+the exact Fontshare stylesheet and font origins in their respective directives.
+Use 13px desktop text and 6–8px control corners inside an edge-to-edge workspace,
+without an outer gutter or rounded frame. Mobile inputs retain 16px text.
+The retired escaped-template renderer is no longer used.
+
+Use direct React components for buttons, dialogs, forms, selects and menus.
+Preserve labels, focus behavior, portal geometry and permission-driven actions.
+`native/web/settings.tsx` and `settings.css` own the Settings shell and its
+forms. `style.css` and the focused panel,
+sidebar and workspace styles own application layout.
+Desktop sidebars collapse to a 52px rail with an open button at the top;
+workspace and Settings share the collapsed state. Mobile navigation stays an overlay.
+
+The folder workspace key uses the shared Button and Radix Dialog behavior, including
+Escape, outside dismissal and the Command/Control-period shortcut. Its resource
+menu reserves a 280px column with a 16px gap from the transcript and composer.
+Below 640px of available chat width, it uses a bounded scrolling row above chat
+instead of covering content. Closing the menu restores the full chat area.
+The independent resource side panel retains its existing split.
+
+Images and fonts belong to `native/web/assets`; public files belong to
+`native/web/public`. Analytics rendering and automation normalization
+are ordinary modules with type declarations. There are no build-time source
+extractors or imports from a legacy static tree.
+
+The home screen places a left-aligned heading and a plain rounded composer over a
+48px dot grid with faint 192px guide lines. Chat shares that sparse backdrop and
+translucent glass composer treatment, with solid code and user-message surfaces.
+Compact draft starters fill and focus the composer without
+sending a message. Once a user
+starts drafting, the starters cannot replace their text. The full-width shell keeps navigation and independent panels
+compact across viewport sizes.
+
+The sidebar lists Recent and Participated sessions alongside pins and folders,
+newest first, with each session’s status on a second line under the
+title. The chat composer uses a compact rounded
+entry above its attachment/model toolbar. Fenced Markdown code has a language
+header, local syntax coloring and plain-text copy; unknown languages remain
+readable plain text, and long lines scroll within a focusable region.
+
+```sh
+npm ci
+npm run typecheck
+npm test
+npm run build
+npx playwright install chromium
+npm run test:ui
+```
+
+Generated `native/src/modelmesh/static` assets are ignored by Git. Docker and package
+builds create them from source; wheels and source distributions carry the build
+without requiring Node.js at runtime. `npm run dev` rebuilds on changes; use `uv run modelmesh dev` to serve the
+application with its configured backend. See [Verification](verification.md) for all checks.
+
+Browser tests in `tests/browser/native_*.cjs` serve the real React application
+against synthetic APIs. They cover keyboard navigation, goals, swarms,
+attachments, responsive panels, appearance and settings. Inspect affected
+screens in both light and dark modes at 1440, 768 and 320 pixels, including dialogs,
+focus, overflow and reduced motion. Fixture screenshots demonstrate presentation, not live provider execution.
+See the [repository UI skill](../.agents/skills/modelmesh-ui/SKILL.md) before changes.

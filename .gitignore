@@ -1,0 +1,11 @@
+.venv/
+.env
+.env.*
+!.env.example
+modelmesh.env
+.data/
+__pycache__/
+.pytest_cache/
+*.pyc
+node_modules/
+test-results/

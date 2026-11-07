@@ -1,0 +1,17 @@
+.sidebar .rail-destinations { display: grid; gap: 2px; }
+.login-password { display: grid; gap: 20px; }
+.login-password label { display: grid; gap: 8px; }
+.live-action > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
+.live-action > button { margin-inline-start: auto; flex-shrink: 0; }
+@media (min-width: 601px) {
+  .app.sidebar-collapsed:not(.settings-open) { grid-template-columns: 52px minmax(0, 1fr); }
+  .app.sidebar-collapsed > .sidebar { padding: 12px 8px 8px; }
+  .app.sidebar-collapsed > .sidebar > :not(.sidebar-brand-row),
+  .app.sidebar-collapsed > .sidebar .brand { display: none; }
+  .app.sidebar-collapsed .sidebar-brand-row { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .login-password input { font-size: 16px; }
+}
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px 16px; background: var(--ui-background); color: var(--ui-foreground); border: 2px solid var(--ui-primary); border-radius: 8px; }
+.skip-link:focus { top: 12px; }

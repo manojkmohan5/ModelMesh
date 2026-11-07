@@ -1,0 +1,1341 @@
+{
+ "benchmark": "2026-11-06-full",
+ "weights": {
+  "quality": 0.6,
+  "speed": 0.2,
+  "cost": 0.2
+ },
+ "task_types": {
+  "code": {
+   "categories": [
+    "code",
+    "tools"
+   ],
+   "ranking": [
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.95,
+     "latency": 6.484,
+     "cost": 0.00041,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9888
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.95,
+     "latency": 10.344,
+     "cost": 0.000515,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.977
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 0.966667,
+     "latency": 5.75,
+     "cost": 0.001082,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9756
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 1.0,
+     "latency": 12.578,
+     "cost": 0.000311,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9661
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.916667,
+     "latency": 11.656,
+     "cost": 0.000616,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.966
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.966667,
+     "latency": 9.328,
+     "cost": 0.001385,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9551
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 0.941667,
+     "latency": 24.547,
+     "cost": 0.000609,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9204
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 0.95,
+     "latency": 14.156,
+     "cost": 0.003481,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8767
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.95,
+     "latency": 66.843,
+     "cost": 0.000241,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.966667,
+     "latency": 10.344,
+     "cost": 0.007131,
+     "items": 35,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7834
+    },
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.891667,
+     "latency": 7.593,
+     "cost": 0.000245,
+     "items": 35,
+     "tied": false,
+     "ranked_quality": 0.891667,
+     "combined": 0.3931
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.9,
+     "latency": 32.312,
+     "cost": 0.003001,
+     "items": 35,
+     "tied": false,
+     "ranked_quality": 0.9,
+     "combined": 0.2785
+    }
+   ]
+  },
+  "debug": {
+   "categories": [
+    "debug"
+   ],
+   "ranking": [
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.933333,
+     "latency": 6.836,
+     "cost": 0.000135,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9914
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.933333,
+     "latency": 5.656,
+     "cost": 0.000246,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.987
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.866667,
+     "latency": 6.602,
+     "cost": 0.000296,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9848
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 0.933333,
+     "latency": 6.7425,
+     "cost": 0.000167,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9821
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 1.0,
+     "latency": 4.836,
+     "cost": 0.000621,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9718
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.933333,
+     "latency": 13.1875,
+     "cost": 0.000455,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.95
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 1.0,
+     "latency": 17.0315,
+     "cost": 0.000415,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9358
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 1.0,
+     "latency": 8.5545,
+     "cost": 0.001202,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9257
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 1.0,
+     "latency": 8.922,
+     "cost": 0.001949,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8793
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.933333,
+     "latency": 65.2815,
+     "cost": 0.000204,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.796
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 1.0,
+     "latency": 5.7655,
+     "cost": 0.003576,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7953
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.8,
+     "latency": 29.4145,
+     "cost": 0.002685,
+     "items": 15,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7689
+    }
+   ]
+  },
+  "math": {
+   "categories": [
+    "math"
+   ],
+   "ranking": [
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 1.0,
+     "latency": 9.3905,
+     "cost": 0.000236,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9786
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 1.0,
+     "latency": 6.578,
+     "cost": 0.000321,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9768
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 1.0,
+     "latency": 9.82,
+     "cost": 0.000448,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9572
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 1.0,
+     "latency": 13.297,
+     "cost": 0.00032,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9533
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 1.0,
+     "latency": 3.703,
+     "cost": 0.000732,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9525
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 1.0,
+     "latency": 13.5625,
+     "cost": 0.000581,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9393
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 1.0,
+     "latency": 4.6015,
+     "cost": 0.000962,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9299
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 1.0,
+     "latency": 21.875,
+     "cost": 0.000483,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9182
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 1.0,
+     "latency": 7.0075,
+     "cost": 0.001207,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9004
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 1.0,
+     "latency": 78.555,
+     "cost": 0.000187,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 1.0,
+     "latency": 4.0785,
+     "cost": 0.002478,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7974
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 1.0,
+     "latency": 29.3125,
+     "cost": 0.00197,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7744
+    }
+   ]
+  },
+  "knowledge": {
+   "categories": [
+    "knowledge"
+   ],
+   "ranking": [
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 1.0,
+     "latency": 2.211,
+     "cost": 0.00024,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9953
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 1.0,
+     "latency": 4.6485,
+     "cost": 0.000503,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9743
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.95,
+     "latency": 5.0705,
+     "cost": 0.000392,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9739
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.95,
+     "latency": 6.562,
+     "cost": 0.000415,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9664
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 1.0,
+     "latency": 3.211,
+     "cost": 0.000858,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9635
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.95,
+     "latency": 3.398,
+     "cost": 0.00088,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9617
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 1.0,
+     "latency": 12.3355,
+     "cost": 0.000336,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9398
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 1.0,
+     "latency": 12.258,
+     "cost": 0.000483,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.935
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 1.0,
+     "latency": 8.0155,
+     "cost": 0.002455,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8652
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 1.0,
+     "latency": 24.9605,
+     "cost": 0.001926,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8176
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.9,
+     "latency": 48.7265,
+     "cost": 0.000182,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.95,
+     "latency": 4.242,
+     "cost": 0.004385,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7897
+    }
+   ]
+  },
+  "summarize": {
+   "categories": [
+    "summarize"
+   ],
+   "ranking": [
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.89,
+     "latency": 10.086,
+     "cost": 0.001699,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.89,
+     "combined": 0.9701
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 0.88,
+     "latency": 15.422,
+     "cost": 0.003402,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.89,
+     "combined": 0.9272
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.8,
+     "latency": 13.5235,
+     "cost": 0.00033,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.8,
+     "combined": 0.8251
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.8,
+     "latency": 14.6325,
+     "cost": 0.000532,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.8,
+     "combined": 0.8195
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 0.8,
+     "latency": 11.5625,
+     "cost": 0.001164,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.8,
+     "combined": 0.8148
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.835,
+     "latency": 14.6875,
+     "cost": 0.010382,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.89,
+     "combined": 0.7916
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 0.695,
+     "latency": 12.594,
+     "cost": 0.000212,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.695,
+     "combined": 0.6348
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.75,
+     "latency": 50.297,
+     "cost": 0.00283,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.75,
+     "combined": 0.6337
+    },
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.685,
+     "latency": 11.5155,
+     "cost": 0.000179,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.685,
+     "combined": 0.6239
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.68,
+     "latency": 10.0235,
+     "cost": 0.000388,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.68,
+     "combined": 0.6141
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.72,
+     "latency": 147.6485,
+     "cost": 0.000304,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.72,
+     "combined": 0.4885
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 0.56,
+     "latency": 17.3285,
+     "cost": 0.000583,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.56,
+     "combined": 0.3784
+    }
+   ]
+  },
+  "translate": {
+   "categories": [
+    "translate"
+   ],
+   "ranking": [
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.641289,
+     "latency": 4.304,
+     "cost": 9.4e-05,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.9947
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 0.664216,
+     "latency": 3.125,
+     "cost": 9.6e-05,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.989
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.661781,
+     "latency": 6.1175,
+     "cost": 0.000166,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.984
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.612289,
+     "latency": 2.562,
+     "cost": 0.000395,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.977
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.643645,
+     "latency": 8.625,
+     "cost": 0.000254,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.9726
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 0.632946,
+     "latency": 5.852,
+     "cost": 0.000588,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.9561
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 0.626432,
+     "latency": 11.0545,
+     "cost": 0.001541,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.872
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.603427,
+     "latency": 109.2035,
+     "cost": 0.000226,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.7899
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.672201,
+     "latency": 8.031,
+     "cost": 0.002715,
+     "items": 20,
+     "tied": true,
+     "ranked_quality": 0.672201,
+     "combined": 0.7882
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 0.591927,
+     "latency": 15.4615,
+     "cost": 0.000261,
+     "items": 20,
+     "tied": false,
+     "ranked_quality": 0.591927,
+     "combined": 0.5288
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.560209,
+     "latency": 4.1955,
+     "cost": 0.000199,
+     "items": 20,
+     "tied": false,
+     "ranked_quality": 0.560209,
+     "combined": 0.3889
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.597487,
+     "latency": 43.602,
+     "cost": 0.002698,
+     "items": 20,
+     "tied": false,
+     "ranked_quality": 0.597487,
+     "combined": 0.3234
+    }
+   ]
+  },
+  "writing": {
+   "categories": [
+    "writing"
+   ],
+   "ranking": [
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.85,
+     "latency": 11.2655,
+     "cost": 0.000486,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.9812
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.91,
+     "latency": 9.8905,
+     "cost": 0.00113,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.9698
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 0.925,
+     "latency": 8.828,
+     "cost": 0.001207,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.9697
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.85,
+     "latency": 23.6405,
+     "cost": 0.000231,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.9644
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 0.83,
+     "latency": 50.5545,
+     "cost": 0.00062,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.8982
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 0.855,
+     "latency": 19.43,
+     "cost": 0.003487,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.8842
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.88,
+     "latency": 35.93,
+     "cost": 0.00292,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.8681
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.83,
+     "latency": 19.25,
+     "cost": 0.007321,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 0.925,
+     "combined": 0.7783
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 0.865,
+     "latency": 13.117,
+     "cost": 0.000125,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.865,
+     "combined": 0.6577
+    },
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.85,
+     "latency": 13.766,
+     "cost": 0.000117,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.85,
+     "combined": 0.5802
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.865,
+     "latency": 112.328,
+     "cost": 0.000231,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.865,
+     "combined": 0.4696
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.815,
+     "latency": 14.3285,
+     "cost": 0.000345,
+     "items": 10,
+     "tied": false,
+     "ranked_quality": 0.815,
+     "combined": 0.383
+    }
+   ]
+  },
+  "build": {
+   "categories": [
+    "agent",
+    "code",
+    "tools"
+   ],
+   "ranking": [
+    {
+     "model": "beam-1.0",
+     "quality": 0.903704,
+     "latency": 6.4765,
+     "cost": 0.000996,
+     "items": 44,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9758
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 1.0,
+     "latency": 13.5465,
+     "cost": 0.000299,
+     "items": 39,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.964
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.903704,
+     "latency": 9.6095,
+     "cost": 0.001276,
+     "items": 44,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9564
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 0.961111,
+     "latency": 26.312,
+     "cost": 0.000581,
+     "items": 40,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9139
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 0.966667,
+     "latency": 16.4915,
+     "cost": 0.003235,
+     "items": 43,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8701
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.936111,
+     "latency": 12.3285,
+     "cost": 0.006626,
+     "items": 43,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7785
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.896825,
+     "latency": 13.5625,
+     "cost": 0.000577,
+     "items": 42,
+     "tied": false,
+     "ranked_quality": 0.896825,
+     "combined": 0.7663
+    },
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.844444,
+     "latency": 8.7265,
+     "cost": 0.000227,
+     "items": 43,
+     "tied": false,
+     "ranked_quality": 0.844444,
+     "combined": 0.6961
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.82381,
+     "latency": 7.3985,
+     "cost": 0.000384,
+     "items": 42,
+     "tied": false,
+     "ranked_quality": 0.82381,
+     "combined": 0.6554
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.818519,
+     "latency": 11.703,
+     "cost": 0.000474,
+     "items": 44,
+     "tied": false,
+     "ranked_quality": 0.818519,
+     "combined": 0.6305
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.818519,
+     "latency": 65.1795,
+     "cost": 0.000222,
+     "items": 44,
+     "tied": false,
+     "ranked_quality": 0.818519,
+     "combined": 0.4561
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.683333,
+     "latency": 32.57,
+     "cost": 0.002788,
+     "items": 43,
+     "tied": false,
+     "ranked_quality": 0.683333,
+     "combined": 0.2305
+    }
+   ]
+  },
+  "chat": {
+   "categories": [
+    "knowledge",
+    "writing"
+   ],
+   "ranking": [
+    {
+     "model": "qwen3.8-flash",
+     "quality": 0.9,
+     "latency": 5.914,
+     "cost": 0.000408,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.9789
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 0.9625,
+     "latency": 3.711,
+     "cost": 0.000914,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.9686
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.93,
+     "latency": 4.203,
+     "cost": 0.00092,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.9667
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 0.915,
+     "latency": 16.7035,
+     "cost": 0.000505,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.9339
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 0.9275,
+     "latency": 9.3045,
+     "cost": 0.002622,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.8745
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 0.94,
+     "latency": 26.133,
+     "cost": 0.002086,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.8395
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 0.89,
+     "latency": 5.5,
+     "cost": 0.004858,
+     "items": 30,
+     "tied": true,
+     "ranked_quality": 0.9625,
+     "combined": 0.7919
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 0.9325,
+     "latency": 12.859,
+     "cost": 0.000302,
+     "items": 30,
+     "tied": false,
+     "ranked_quality": 0.9325,
+     "combined": 0.7311
+    },
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 0.925,
+     "latency": 3.6095,
+     "cost": 0.00022,
+     "items": 30,
+     "tied": false,
+     "ranked_quality": 0.925,
+     "combined": 0.716
+    },
+    {
+     "model": "qwen3-coder-next",
+     "quality": 0.9075,
+     "latency": 7.898,
+     "cost": 0.000477,
+     "items": 30,
+     "tied": false,
+     "ranked_quality": 0.9075,
+     "combined": 0.5604
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 0.9,
+     "latency": 7.828,
+     "cost": 0.000385,
+     "items": 30,
+     "tied": false,
+     "ranked_quality": 0.9,
+     "combined": 0.5064
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 0.8825,
+     "latency": 61.6715,
+     "cost": 0.00019,
+     "items": 30,
+     "tied": false,
+     "ranked_quality": 0.8825,
+     "combined": 0.2
+    }
+   ]
+  },
+  "vision": {
+   "categories": [
+    "vision"
+   ],
+   "ranking": [
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 1.0,
+     "latency": 3.8435,
+     "cost": 7.9e-05,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9136
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 1.0,
+     "latency": 3.203,
+     "cost": 0.00035,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9037
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 1.0,
+     "latency": 4.1405,
+     "cost": 9.1e-05,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8792
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 1.0,
+     "latency": 4.664,
+     "cost": 0.000134,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8011
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 1.0,
+     "latency": 4.8595,
+     "cost": 0.000642,
+     "items": 10,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.5988
+    }
+   ]
+  },
+  "long_context": {
+   "categories": [
+    "long_context"
+   ],
+   "ranking": [
+    {
+     "model": "qwen3-coder-next",
+     "quality": 1.0,
+     "latency": 5.422,
+     "cost": 0.007118,
+     "items": 3,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9936
+    },
+    {
+     "model": "beam-1.0",
+     "quality": 1.0,
+     "latency": 5.8675,
+     "cost": 0.025867,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9507
+    },
+    {
+     "model": "muse-glimmer-30b",
+     "quality": 0.666667,
+     "latency": 8.765,
+     "cost": 0.013961,
+     "items": 3,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9408
+    },
+    {
+     "model": "deepseek-v4-flash",
+     "quality": 1.0,
+     "latency": 10.5235,
+     "cost": 0.01228,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9218
+    },
+    {
+     "model": "qwen3.8-flash",
+     "quality": 1.0,
+     "latency": 10.672,
+     "cost": 0.011198,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.9204
+    },
+    {
+     "model": "qwen3.6-35b-a3b",
+     "quality": 1.0,
+     "latency": 10.8595,
+     "cost": 0.014721,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.913
+    },
+    {
+     "model": "deepseek-v4.1-flash",
+     "quality": 1.0,
+     "latency": 14.086,
+     "cost": 0.019496,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8641
+    },
+    {
+     "model": "gemma-4-31b-it",
+     "quality": 1.0,
+     "latency": 16.36,
+     "cost": 0.005077,
+     "items": 3,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8613
+    },
+    {
+     "model": "nemotron-3-super-120b-a12b",
+     "quality": 1.0,
+     "latency": 16.2035,
+     "cost": 0.014778,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8454
+    },
+    {
+     "model": "ornith-1.0-35b",
+     "quality": 1.0,
+     "latency": 22.5395,
+     "cost": 0.003927,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.8
+    },
+    {
+     "model": "qwen3.8-27b",
+     "quality": 1.0,
+     "latency": 19.922,
+     "cost": 0.028786,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7791
+    },
+    {
+     "model": "glm-5.3",
+     "quality": 1.0,
+     "latency": 10.8825,
+     "cost": 0.103515,
+     "items": 6,
+     "tied": true,
+     "ranked_quality": 1.0,
+     "combined": 0.7347
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,64 @@
+# ModelMesh: the app, a LiteLLM gateway in front of NCSA Lumen, and the Laya task-type classifier.
+# The app calls the Responses API; Lumen only serves chat completions, so the gateway translates.
+# The app accepts an http gateway only on loopback, so it shares the gateway's network namespace
+# and reaches it at http://127.0.0.1:4000/v1.
+#
+#   docker compose up -d      # start
+#   docker compose down       # stop (data stays in the modelmesh-data and laya-models volumes)
+name: modelmesh
+
+services:
+  lumen-gateway:
+    # Pinned to the build in use on 2026-11-07 (tag main-stable): the gateway holds the Lumen key and sees
+    # every prompt, so it changes only on purpose. To update, pull a new build and replace the digest.
+    image: docker.litellm.ai/berriai/litellm@sha256:c560d317136880ea92d62334d4367ab10955b1af189dd3ea24f6551290b1d6c1
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    env_file: .env.lumen
+    volumes:
+      - ./lumen-gateway/config.yaml:/app/config.yaml:ro
+    ports:
+      - "127.0.0.1:8787:8787"   # ModelMesh UI (served by the app container below)
+      - "127.0.0.1:4001:4000"   # gateway, for curl tests
+    restart: unless-stopped
+
+  # Auto routing's task-type classifier (laya/). No published port: only the app reaches it.
+  laya:
+    build: ./laya
+    image: modelmesh-laya
+    env_file: .env.laya   # LAYA_API_KEY, shared with the app below
+    environment:
+      LAYA_THREADS: "4"   # measured: 1.7 s median at 4 threads, 3.2-4.1 s at 1
+    volumes:
+      - laya-models:/models   # reader weights and the fitted classifier (laya/train.py)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 30s
+      start_period: 300s   # the first start downloads the reader
+    restart: unless-stopped
+
+  app:
+    build: .
+    image: modelmesh
+    command: ["modelmesh", "dev", "--host", "0.0.0.0", "--port", "8787"]
+    env_file: [modelmesh.env, .env.laya]
+    environment:
+      MODELMESH_LAYA_URL: http://laya:8000
+      # Lumen's beam-1.0 refuses strict tool schemas for the agent's tools ("cannot enforce strict tools").
+      MODELMESH_NON_STRICT_TOOL_MODELS: beam-1.0
+    network_mode: "service:lumen-gateway"
+    depends_on: [lumen-gateway]
+    volumes:
+      - modelmesh-data:/data
+      # The agent's computer is a sibling container started through the host's Docker socket.
+      # That socket is root-equivalent on the Docker host: local use only.
+      # docker_start.py keeps the socket's group for the UID 10001 server.
+      - /var/run/docker.sock:/var/run/docker.sock
+    init: true
+    stop_grace_period: 90s
+    restart: unless-stopped
+
+volumes:
+  modelmesh-data:
+    external: true
+  laya-models:
+    external: true

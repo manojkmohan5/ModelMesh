@@ -1,0 +1,17 @@
+{
+  "source": "Lumen's published model list (opencode.json), 2026-11-05. Prices are US dollars per million tokens.",
+  "models": {
+    "beam-1.0": {"context": 524282, "max_output": 131072, "price_in": 0.33, "price_out": 1.1, "vision": false, "thinks": true},
+    "deepseek-v4-flash": {"context": 511994, "max_output": 128000, "price_in": 0.161857, "price_out": 0.37146, "vision": false, "thinks": true},
+    "deepseek-v4.1-flash": {"context": 1048570, "max_output": 384000, "price_in": 0.256856, "price_out": 0.930653, "vision": true, "thinks": true},
+    "gemma-4-31b-it": {"context": 46790, "max_output": 32768, "price_in": 0.167931, "price_out": 0.436103, "vision": true, "thinks": true},
+    "glm-5.3": {"context": 524282, "max_output": 131072, "price_in": 1.321413, "price_out": 4.248318, "vision": false, "thinks": true},
+    "muse-glimmer-30b": {"context": 131066, "max_output": 131072, "price_in": 0.322727, "price_out": 1.345455, "vision": true, "thinks": true},
+    "nemotron-3-super-120b-a12b": {"context": 262144, "max_output": 262144, "price_in": 0.168636, "price_out": 0.759091, "vision": false, "thinks": true},
+    "ornith-1.0-35b": {"context": 262138, "max_output": 256000, "price_in": 0.05, "price_out": 0.1, "vision": false, "thinks": true},
+    "qwen3-coder-next": {"context": 131066, "max_output": 256000, "price_in": 0.226538, "price_out": 1.235846, "vision": false, "thinks": false},
+    "qwen3.6-35b-a3b": {"context": 262138, "max_output": 131056, "price_in": 0.185435, "price_out": 1.138217, "vision": false, "thinks": true},
+    "qwen3.8-27b": {"context": 250542, "max_output": 262144, "price_in": 0.364571, "price_out": 2.3965, "vision": true, "thinks": true},
+    "qwen3.8-flash": {"context": 262138, "max_output": 131072, "price_in": 0.142798, "price_out": 0.452902, "vision": true, "thinks": false}
+  }
+}

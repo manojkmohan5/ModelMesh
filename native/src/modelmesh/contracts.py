@@ -1,0 +1,185 @@
+"""Serializable, server-authored inputs to native agent execution."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import re
+from dataclasses import dataclass, field
+from typing import Any, Literal
+
+from pydantic import BaseModel, Field, model_validator
+
+
+class GuidanceChanged(PermissionError):
+    """A newer authenticated input fenced an action before it executed."""
+
+
+# The hash of an empty connected-account list. Connected accounts are gone, but saved
+# conversation, memory and computer identities were derived from this value, so it never changes.
+NO_GRANTS_KEY = hashlib.sha256(b"[]").hexdigest()
+
+
+@dataclass(frozen=True)
+class ExecutionContext:
+    """Policy context, independent of the conversation's display/ACL context."""
+
+    visibility: str = "private"
+    surface: str = "web"
+
+
+@dataclass
+class RunScope:
+    session_id: str
+    turn_id: str
+    actor_id: str
+    model: str
+    visibility: str = "private"
+    surface: str = "web"
+    swarm_id: str | None = None
+    swarm_name: str | None = None
+    delegation_depth: int = 0
+    delegation_generated: bool = False
+    # Chosen by the workflow and carried into tool activities. Old payloads
+    # must retain SDK delegation and its shared parent computer.
+    interactive_delegation: bool = False
+    # Workflow-owned state, carried through replay and history checkpoints.
+    # Older activity payloads retain synchronous delegation.
+    background_delegation: bool = False
+    background_agents: list[str] = field(default_factory=list)
+    agent_messages: bool = False
+    message_watches: list[str] = field(default_factory=list)
+    execution_context: ExecutionContext | None = None
+    history_segment: int = 0
+    # Recorded by the workflow, so old activity inputs keep the original stream.
+    workflow_public_events: bool = False
+    goal_generation: int | None = None
+
+    @property
+    def root_run_id(self) -> str:
+        """One logical turn can contain several SDK runs across Temporal histories."""
+        return self.turn_id if not self.history_segment else f"{self.turn_id}:segment:{self.history_segment}"
+
+    @property
+    def authority(self) -> ExecutionContext:
+        return self.execution_context or ExecutionContext(self.visibility, self.surface)
+
+    @property
+    def conversation_id(self) -> str:
+        # Native history search must have the same privacy boundary as native
+        # history reuse. A shared session is not a shared working context.
+        return hashlib.sha256(json.dumps([
+            self.session_id, self.actor_id, self.model, NO_GRANTS_KEY,
+        ]).encode()).hexdigest()
+
+    @property
+    def memory_namespace(self) -> str:
+        # Harness memory paths require bounded ASCII segments. Preserve existing
+        # native UUID namespaces; hash any other actor ID.
+        actor_segment = self.actor_id if re.fullmatch(
+            r"[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}", self.actor_id,
+        ) else "identity-" + hashlib.sha256(self.actor_id.encode()).hexdigest()
+        return f"{self.authority.visibility}/{actor_segment}/{NO_GRANTS_KEY}"
+
+    @property
+    def workspace_key(self) -> str:
+        return hashlib.sha256(json.dumps([
+            self.visibility, self.actor_id if self.visibility == "private" else "shared",
+            NO_GRANTS_KEY,
+        ]).encode()).hexdigest()
+
+
+@dataclass
+class InputImage:
+    digest: str
+    media_type: str
+    name: str
+    data: str = ""  # Hydrated by the activity; encrypted/offloaded in Temporal.
+    # Keep the serialized type/field names compatible with recorded workflows.
+    # Non-image uploads carry a reference for the shared attachment_copy tool.
+    upload_id: str = ""
+    size: int = 0
+
+
+@dataclass
+class PreparedTurn:
+    scope: RunScope
+    prompt: str
+    conversation: str | None = None
+    workspace: dict[str, Any] | None = None
+    deferred_results: dict[str, Any] | None = None
+    images: list[InputImage] = field(default_factory=list)
+
+
+@dataclass
+class SteeringInput:
+    turn_id: str
+    prompt: str
+    mode: Literal["asap", "when_idle"] = "asap"
+    images: list[InputImage] = field(default_factory=list)
+
+
+@dataclass
+class CompletedTurn:
+    scope: RunScope
+    conversation: str
+    output: str
+    workspace: dict[str, Any] | None
+    usage: dict[str, Any]
+    deferred: bool = False
+
+
+class NewSession(BaseModel):
+    title: str = Field(default="New conversation", max_length=300)
+    visibility: Literal["private", "shared"] = "shared"
+    model: str | None = None
+
+
+class NewMessage(BaseModel):
+    prompt: str = Field(default="", max_length=500_000)
+    request_key: str = Field(min_length=1, max_length=200)
+    model: str | None = None
+    mode: Literal["asap", "when_idle"] = "when_idle"
+    attachments: list[str] = Field(default_factory=list, max_length=8)
+    reply_to: str | None = Field(default=None, min_length=1, max_length=36)
+
+    @model_validator(mode="after")
+    def nonblank_prompt(self) -> NewMessage:
+        if not self.prompt.strip() and not self.attachments:
+            raise ValueError("Enter a message or attach a file.")
+        if len(set(self.attachments)) != len(self.attachments):
+            raise ValueError("A file can only be attached once per message.")
+        return self
+
+
+class SessionEdit(BaseModel):
+    title: str | None = Field(default=None, min_length=1, max_length=300)
+    archived: bool | None = None
+    pinned: bool | None = None
+    folder: str | None = Field(default=None, max_length=200)
+    unread: bool | None = None
+
+    @model_validator(mode="after")
+    def trim_title(self) -> SessionEdit:
+        if self.title is not None:
+            self.title = self.title.strip()
+            if not self.title:
+                raise ValueError("Enter a session name.")
+        return self
+
+
+class ApprovalReply(BaseModel):
+    turn_id: str
+    request_key: str = Field(min_length=1, max_length=200)
+    approvals: dict[str, bool] = Field(default_factory=dict)
+    answers: dict[str, Any] = Field(default_factory=dict)
+
+
+class QueuedEdit(BaseModel):
+    prompt: str = Field(min_length=1, max_length=500_000)
+
+
+class EffectResolution(BaseModel):
+    outcome: Literal["completed", "not_executed"]
+    evidence: str = Field(min_length=10, max_length=20_000)
+

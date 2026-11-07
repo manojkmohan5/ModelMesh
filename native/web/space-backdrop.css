@@ -1,0 +1,29 @@
+.space-backdrop { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
+.home-space, .chat-space {
+  background-image:
+    radial-gradient(var(--ui-home-dot) 1px, transparent 1px),
+    linear-gradient(var(--ui-home-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ui-home-grid) 1px, transparent 1px);
+  background-size: 48px 48px, 192px 192px, 192px 192px;
+  background-position: 0 0, 24px 24px, 24px 24px;
+  mask-image: linear-gradient(#000, #0009);
+}
+/* A slow violet, fuchsia and cyan glow behind the mesh. */
+.space-aurora {
+  position: absolute; inset: -30% -10% auto; height: 95%;
+  background:
+    radial-gradient(40% 50% at 30% 42%, var(--mm-glow), transparent 70%),
+    radial-gradient(34% 44% at 70% 30%, var(--mm-glow-2), transparent 70%),
+    radial-gradient(30% 40% at 56% 66%, var(--mm-glow-3), transparent 70%);
+  animation: space-aurora 24s ease-in-out infinite alternate;
+}
+@keyframes space-aurora {
+  from { transform: translate3d(-3%, 0, 0) scale(1); }
+  to { transform: translate3d(3%, 4%, 0) scale(1.08); }
+}
+.neural-mesh {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  mask-image: radial-gradient(ellipse 78% 72% at 50% 32%, #000 22%, transparent 86%);
+}
+@media (prefers-reduced-motion: reduce) { .space-aurora { animation: none; } }
+@media (forced-colors: active) { .space-aurora, .neural-mesh { display: none; } }

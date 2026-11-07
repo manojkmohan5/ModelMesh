@@ -1,0 +1,20 @@
+[project]
+name = "modelmesh-dev"
+version = "0.1.0"
+description = "ModelMesh development workspace: the app package plus test and lint tools."
+requires-python = ">=3.12"
+dependencies = ["modelmesh"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "ruff>=0.14", "pyright>=1.1"]
+
+[tool.uv.workspace]
+members = ["native"]
+
+[tool.uv.sources]
+modelmesh = { workspace = true }
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]

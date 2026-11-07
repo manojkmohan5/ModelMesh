@@ -1,0 +1,11 @@
+{
+ "code": "Write new code: a function, script, class, query or program.",
+ "debug": "Fix or explain an error, a failing test, a crash or a bug in existing code.",
+ "math": "Calculate, solve an equation, a word problem, a proof or a logic puzzle.",
+ "knowledge": "Explain a concept or answer a factual question.",
+ "summarize": "Summarize, shorten or extract the key points of a given text.",
+ "translate": "Translate text between languages.",
+ "writing": "Write prose for people: an email, story, post, product copy or essay.",
+ "build": "Make an artifact or do a multi-step job: draw a picture, build a website or app, create files, analyze data.",
+ "chat": "Small talk, greetings, thanks or a short reaction."
+}

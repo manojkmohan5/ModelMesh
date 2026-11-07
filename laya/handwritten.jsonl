@@ -1,0 +1,90 @@
+{"text": "Write a Python function that checks whether a string is a palindrome.", "label": "code", "source": "handwritten"}
+{"text": "Write a SQL query that returns the top 5 customers by revenue.", "label": "code", "source": "handwritten"}
+{"text": "Implement a debounce helper in TypeScript.", "label": "code", "source": "handwritten"}
+{"text": "Create a bash script that renames every .jpeg file to .jpg.", "label": "code", "source": "handwritten"}
+{"text": "Write a Go struct and constructor for a rate limiter.", "label": "code", "source": "handwritten"}
+{"text": "I need a regex that matches US phone numbers.", "label": "code", "source": "handwritten"}
+{"text": "Write a React hook that tracks the window size.", "label": "code", "source": "handwritten"}
+{"text": "Implement binary search in Rust.", "label": "code", "source": "handwritten"}
+{"text": "Write a function to merge two sorted lists.", "label": "code", "source": "handwritten"}
+{"text": "Give me a Python class for an LRU cache.", "label": "code", "source": "handwritten"}
+{"text": "TypeError: cannot read properties of undefined (reading 'map') in my React component, why?", "label": "debug", "source": "handwritten"}
+{"text": "My pytest fails with AssertionError: expected 3, got 2. Here is the code...", "label": "debug", "source": "handwritten"}
+{"text": "Segmentation fault when I run this C program, can you find the bug?", "label": "debug", "source": "handwritten"}
+{"text": "This SQL query returns duplicates, what's wrong?", "label": "debug", "source": "handwritten"}
+{"text": "Why does my Docker build fail with 'no space left on device'?", "label": "debug", "source": "handwritten"}
+{"text": "The fetch call works locally but gives a CORS error in production.", "label": "debug", "source": "handwritten"}
+{"text": "My loop never ends, here is the code.", "label": "debug", "source": "handwritten"}
+{"text": "npm install fails with ERESOLVE unable to resolve dependency tree.", "label": "debug", "source": "handwritten"}
+{"text": "KeyError: 'id' at line 42, how do I fix it?", "label": "debug", "source": "handwritten"}
+{"text": "The tests pass alone but fail when run together.", "label": "debug", "source": "handwritten"}
+{"text": "What is 17% of 2,350?", "label": "math", "source": "handwritten"}
+{"text": "Solve for x: 3x + 7 = 31.", "label": "math", "source": "handwritten"}
+{"text": "A train travels 240 km in 3 hours. What is its average speed?", "label": "math", "source": "handwritten"}
+{"text": "Prove that the square root of 2 is irrational.", "label": "math", "source": "handwritten"}
+{"text": "How many ways can 5 people sit in a row?", "label": "math", "source": "handwritten"}
+{"text": "What is the derivative of x^3 sin x?", "label": "math", "source": "handwritten"}
+{"text": "If I invest $1,000 at 5% compounded yearly, what do I have after 10 years?", "label": "math", "source": "handwritten"}
+{"text": "Is 221 a prime number?", "label": "math", "source": "handwritten"}
+{"text": "Integrate e^(2x) dx.", "label": "math", "source": "handwritten"}
+{"text": "Three boxes hold 12, 15 and 21 apples. What is the average?", "label": "math", "source": "handwritten"}
+{"text": "What causes the seasons on Earth?", "label": "knowledge", "source": "handwritten"}
+{"text": "Explain how vaccines train the immune system.", "label": "knowledge", "source": "handwritten"}
+{"text": "Who wrote One Hundred Years of Solitude?", "label": "knowledge", "source": "handwritten"}
+{"text": "What is the difference between TCP and UDP?", "label": "knowledge", "source": "handwritten"}
+{"text": "Why is the sky blue?", "label": "knowledge", "source": "handwritten"}
+{"text": "What does a central bank do?", "label": "knowledge", "source": "handwritten"}
+{"text": "Explain quantum entanglement simply.", "label": "knowledge", "source": "handwritten"}
+{"text": "What is the capital of Australia?", "label": "knowledge", "source": "handwritten"}
+{"text": "How does a transformer neural network work?", "label": "knowledge", "source": "handwritten"}
+{"text": "What were the main causes of World War I?", "label": "knowledge", "source": "handwritten"}
+{"text": "Summarize this article in three bullet points: ...", "label": "summarize", "source": "handwritten"}
+{"text": "Give me the key takeaways from these meeting notes.", "label": "summarize", "source": "handwritten"}
+{"text": "TL;DR this email thread.", "label": "summarize", "source": "handwritten"}
+{"text": "Shorten this paragraph to one sentence.", "label": "summarize", "source": "handwritten"}
+{"text": "What are the main points of this research abstract?", "label": "summarize", "source": "handwritten"}
+{"text": "Condense this report for an executive.", "label": "summarize", "source": "handwritten"}
+{"text": "Summarize the plot of this chapter.", "label": "summarize", "source": "handwritten"}
+{"text": "Pull out the action items from this transcript.", "label": "summarize", "source": "handwritten"}
+{"text": "Give a two-line summary of this README.", "label": "summarize", "source": "handwritten"}
+{"text": "Summarize the customer reviews below.", "label": "summarize", "source": "handwritten"}
+{"text": "Translate 'good morning, how are you?' into French.", "label": "translate", "source": "handwritten"}
+{"text": "How do you say 'where is the train station' in Japanese?", "label": "translate", "source": "handwritten"}
+{"text": "Translate this paragraph into Spanish.", "label": "translate", "source": "handwritten"}
+{"text": "Put this email into German, keeping it formal.", "label": "translate", "source": "handwritten"}
+{"text": "Translate to Hindi: thank you for your help.", "label": "translate", "source": "handwritten"}
+{"text": "What does 'je ne sais quoi' mean in English?", "label": "translate", "source": "handwritten"}
+{"text": "Translate this product description into Portuguese.", "label": "translate", "source": "handwritten"}
+{"text": "Render this sentence in Italian.", "label": "translate", "source": "handwritten"}
+{"text": "Translate the following into Korean.", "label": "translate", "source": "handwritten"}
+{"text": "Convert this text from Chinese to English.", "label": "translate", "source": "handwritten"}
+{"text": "Write a polite email declining a meeting invitation.", "label": "writing", "source": "handwritten"}
+{"text": "Write a short story about a lighthouse keeper.", "label": "writing", "source": "handwritten"}
+{"text": "Draft a LinkedIn post announcing our new product.", "label": "writing", "source": "handwritten"}
+{"text": "Write product copy for noise-cancelling headphones.", "label": "writing", "source": "handwritten"}
+{"text": "Write a cover letter for a data analyst role.", "label": "writing", "source": "handwritten"}
+{"text": "Write a toast for my sister's wedding.", "label": "writing", "source": "handwritten"}
+{"text": "Compose a haiku about autumn.", "label": "writing", "source": "handwritten"}
+{"text": "Write a blog intro about remote work.", "label": "writing", "source": "handwritten"}
+{"text": "Write a thank-you note to a teacher.", "label": "writing", "source": "handwritten"}
+{"text": "Draft a press release for our funding round.", "label": "writing", "source": "handwritten"}
+{"text": "draw a cat", "label": "build", "source": "handwritten"}
+{"text": "Build a landing page for a coffee shop.", "label": "build", "source": "handwritten"}
+{"text": "Create a Porsche advert page in React.", "label": "build", "source": "handwritten"}
+{"text": "Make a chart of these sales numbers.", "label": "build", "source": "handwritten"}
+{"text": "Analyze this CSV and plot the monthly totals.", "label": "build", "source": "handwritten"}
+{"text": "Create a todo app with a database.", "label": "build", "source": "handwritten"}
+{"text": "Generate an SVG logo for my startup.", "label": "build", "source": "handwritten"}
+{"text": "Set up a Flask API with two endpoints and run it.", "label": "build", "source": "handwritten"}
+{"text": "Scrape the titles from this page and save them to a file.", "label": "build", "source": "handwritten"}
+{"text": "Make a slide deck about our roadmap.", "label": "build", "source": "handwritten"}
+{"text": "hi", "label": "chat", "source": "handwritten"}
+{"text": "thanks!", "label": "chat", "source": "handwritten"}
+{"text": "ok cool", "label": "chat", "source": "handwritten"}
+{"text": "good night", "label": "chat", "source": "handwritten"}
+{"text": "how are you?", "label": "chat", "source": "handwritten"}
+{"text": "lol that's funny", "label": "chat", "source": "handwritten"}
+{"text": "great job", "label": "chat", "source": "handwritten"}
+{"text": "hello there", "label": "chat", "source": "handwritten"}
+{"text": "sounds good", "label": "chat", "source": "handwritten"}
+{"text": "nice", "label": "chat", "source": "handwritten"}
