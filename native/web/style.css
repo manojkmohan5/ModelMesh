@@ -284,7 +284,7 @@ legend { margin-bottom: 12px; font-weight: 500; }
 .routing-details dd { margin: 0; }
 .routing-details code { font-size: 11px; }
 .routing-details table { font-size: 12px; }
-.routing-details :is(th, td) { height: auto; padding: 4px 8px 4px 0; }
+.routing-details :is(th, td) { height: auto; padding: 4px 8px 4px 0; white-space: normal; } /* Wrap on narrow screens instead of overflowing. */
 .routing-details caption { color: var(--ui-muted); margin-top: 6px; text-align: left; }
 .routing-details tr[data-chosen] td { font-weight: 600; }
 @supports ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {

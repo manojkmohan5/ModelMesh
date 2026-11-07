@@ -695,3 +695,10 @@ Commands as of step 6 (before it, the image was `moyai-local` and the compose fi
     - lint and types;
     - the Python tests;
     - the web UI: API client check, type check, unit tests, build and browser tests.
+  - First CI run on GitHub (Linux):
+    - Lint and types passed.
+    - The Python tests passed, including `test_package_build`, which has npm there.
+    - The browser tests passed 275 of 276. At 320 px, the routing Details table was a few
+      pixels wider than its box on Linux. Its cells could not wrap (the table component
+      defaults to `nowrap`), and Linux text renders slightly wider. The cells may wrap now, so
+      the table fits on any platform.
